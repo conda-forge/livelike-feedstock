@@ -146,4 +146,5 @@ Feedstock Maintainers
 =====================
 
 * [@jGaboardi](https://github.com/jGaboardi/)
+* [@jvtcl](https://github.com/jvtcl/)
 
