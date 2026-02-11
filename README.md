@@ -146,7 +146,5 @@ Feedstock Maintainers
 =====================
 
 * [@jGaboardi](https://github.com/jGaboardi/)
-
-
-<!-- dummy commit to enable rerendering -->
+* [@jvtcl](https://github.com/jvtcl/)
 
