@@ -20,7 +20,7 @@ build:
 
 requirements:
   host:
-    - python 3.11.*
+    - python >=${{ python_min }}.*
     - setuptools >=61.0
     - pip
   run:
@@ -47,7 +47,9 @@ tests:
       imports:
         - livelike
       pip_check: true
-      python_version: ${{ python_min }}
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
 
 about:
   summary: A Population Synthesizer for High Demographic Resolution Analysis.
