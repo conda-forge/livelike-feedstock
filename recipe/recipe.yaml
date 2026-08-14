@@ -1,27 +1,30 @@
-{% set name = "livelike" %}
-{% set version = "1.5.3" %}
-{% set python_min = "3.11" %}
+schema_version: 1
+
+context:
+  name: livelike
+  version: "1.5.3"
+  python_min: "3.11"
 
 package:
-  name: {{ name|lower }}
-  version: {{ version }}
+  name: ${{ name|lower }}
+  version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
   sha256: 417c530becf177d5304dcfd573f700d0fe4570b8a6c08a9d6f8976da55639ede
 
 build:
+  number: 1
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
-    - python {{ python_min }}
+    - python ${{ python_min }}.*
     - setuptools >=61.0
     - pip
   run:
-    - python >={{ python_min }}
+    - python >=${{ python_min }}
     - awkward >=2.6
     - certifi >=2025.10.5
     - deprecation
@@ -39,23 +42,23 @@ requirements:
     - scipy >=1.12
     - shapely >=2.0
 
-test:
-  imports:
-    - livelike
-  commands:
-    - pip check
-  requires:
-    - python {{ python_min }}
-    - pip
+tests:
+  - python:
+      imports:
+        - livelike
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
 
 about:
-  home: https://github.com/likeness-pop/
   summary: A Population Synthesizer for High Demographic Resolution Analysis.
   license: LicenseRef-UT-BATTELLE
   license_file:
     - LICENSE
     - NOTICE
-  doc_url: https://github.com/likeness-pop/livelike/
+  homepage: https://github.com/likeness-pop/
+  documentation: https://github.com/likeness-pop/livelike/
 
 extra:
   recipe-maintainers:
